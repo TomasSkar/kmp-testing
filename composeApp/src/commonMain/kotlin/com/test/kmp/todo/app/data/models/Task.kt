@@ -1,8 +1,11 @@
 package com.test.kmp.todo.app.data.models
 
-// Todo maybe @Serializable
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "tasks")
 data class Task(
-    val id: String,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0L,
     val name: String,
     val description: String,
     val isFinished: Boolean = false

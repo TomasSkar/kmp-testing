@@ -2,14 +2,11 @@ package com.test.kmp.todo.app.add
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.test.kmp.todo.app.data.TasksRepository
 import com.test.kmp.todo.app.data.models.Task
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlin.uuid.ExperimentalUuidApi
-import kotlin.uuid.Uuid
 
 sealed interface AddTaskEffect {
     data object NavigateBack : AddTaskEffect
@@ -21,7 +18,7 @@ data class AddTaskState(
 )
 
 class AddTaskViewModel(
-    private val repository: TasksRepository
+    private val addTaskUseCase: AddTaskUseCase,
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(AddTaskState())
@@ -49,20 +46,24 @@ class AddTaskViewModel(
         }
     }
 
-    @OptIn(ExperimentalUuidApi::class)
     fun addTapped() {
         val taskData = Task(
-            id = Uuid.random().toHexString(),
             name = _state.value.uiState.titleText,
             description = _state.value.uiState.descriptionText
         )
-        // Todo if syncronus - first set loading and only then back
-        repository.addTask(taskData)
         viewModelScope.launch {
             _state.update { currentState ->
                 currentState.copy(
                     uiState = currentState.uiState.copy(
                         isAddLoad = true
+                    ),
+                )
+            }
+            addTaskUseCase(taskData)
+            _state.update { currentState ->
+                currentState.copy(
+                    uiState = currentState.uiState.copy(
+                        isAddLoad = false
                     ),
                     effect = AddTaskEffect.NavigateBack
                 )

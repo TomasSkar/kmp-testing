@@ -20,9 +20,9 @@ import com.test.kmp.todo.app.data.models.Task
 @Composable
 fun TaskItemView(
     taskData: Task,
-    markAsDoneClick: ((taskId: String) -> Unit)?,
-    revokeTaskClick: ((taskId: String) -> Unit)?,
-    taskClick: (taskId: String) -> Unit,
+    markAsDoneClick: ((taskId: Long) -> Unit)?,
+    revokeTaskClick: ((taskId: Long) -> Unit)?,
+    taskClick: (taskId: Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Card(

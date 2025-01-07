@@ -8,9 +8,14 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinx.serialization)
+    alias(libs.plugins.kspCompose)
+    alias(libs.plugins.room)
 }
 
 kotlin {
+    sourceSets.commonMain {
+        kotlin.srcDir("build/generated/ksp/metadata")
+    }
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -36,6 +41,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
+            implementation(libs.room.runtime.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -51,9 +57,12 @@ kotlin {
             implementation(libs.kotlinx.serialization.json)
             implementation(libs.log.kermit)
 
-            implementation(libs.koin.core)
+            api(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.composeVM)
+
+            implementation(libs.room.runtime)
+            implementation(libs.sqlite.bundled)
         }
     }
 }
@@ -85,7 +94,16 @@ android {
     }
 }
 
-dependencies {
-    debugImplementation(compose.uiTooling)
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
+dependencies {
+    // Android
+    add("kspAndroid", libs.room.compiler)
+    // iOS
+    add("kspIosSimulatorArm64", libs.room.compiler)
+    add("kspIosX64", libs.room.compiler)
+    add("kspIosArm64", libs.room.compiler)
+    debugImplementation(compose.uiTooling)
+}

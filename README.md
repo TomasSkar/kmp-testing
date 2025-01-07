@@ -15,12 +15,12 @@ Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-mu
 
 Projects and articles used as example: 
 1. Room: 
-  a) https://developer.android.com/kotlin/multiplatform/room
-  b) https://github.com/BillyMRX1/The-Notes-KMP/blob/production/composeApp/src/commonMain/kotlin/ui/components/EmptyState.kt
-  c) https://medium.com/@brilianadeputra/how-to-use-koin-and-room-database-in-kotlin-multiplatform-ce73577e4cc9
+  - a) https://developer.android.com/kotlin/multiplatform/room
+  - b) https://github.com/BillyMRX1/The-Notes-KMP/blob/production/composeApp/src/commonMain/kotlin/ui/components/EmptyState.kt
+  - c) https://medium.com/@brilianadeputra/how-to-use-koin-and-room-database-in-kotlin-multiplatform-ce73577e4cc9
 2. Kermit logging: 
-  a) https://kermit.touchlab.co/docs/
+  - a) https://kermit.touchlab.co/docs/
 3. ViewModel: 
-  a) https://proandroiddev.com/how-to-integrate-viewmodel-in-kotlin-multiplatform-with-koin-1a1134530215
-  b) VM params: https://stackoverflow.com/questions/69456746/how-to-initialize-koin-viewmodel-with-parameters-inside-a-composable
+  - a) https://proandroiddev.com/how-to-integrate-viewmodel-in-kotlin-multiplatform-with-koin-1a1134530215
+  - b) VM params: https://stackoverflow.com/questions/69456746/how-to-initialize-koin-viewmodel-with-parameters-inside-a-composable
 4.

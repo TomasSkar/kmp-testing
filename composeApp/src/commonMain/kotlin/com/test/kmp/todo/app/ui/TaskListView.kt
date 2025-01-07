@@ -27,9 +27,9 @@ private enum class TaskListContentState {
 @Composable
 fun TaskListScreen(
     uiState: TaskListUiState,
-    markAsDoneClick: ((taskId: String) -> Unit)?,
-    revokeTaskClick: ((taskId: String) -> Unit)?,
-    taskCLick: (taskId: String) -> Unit,
+    markAsDoneClick: ((taskId: Long) -> Unit)?,
+    revokeTaskClick: ((taskId: Long) -> Unit)?,
+    taskCLick: (taskId: Long) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val contentState = when {

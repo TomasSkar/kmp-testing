@@ -7,10 +7,10 @@ object DirectDestinations {
     object AddTask
 
     @Serializable
-    data class EditTask(val taskId: String)
+    data class EditTask(val taskId: Long)
 
     @Serializable
     data class TaskDetails(
-        val taskId: String
+        val taskId: Long
     )
 }

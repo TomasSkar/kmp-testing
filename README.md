@@ -23,4 +23,6 @@ Projects and articles used as example:
 3. ViewModel: 
   - a) https://proandroiddev.com/how-to-integrate-viewmodel-in-kotlin-multiplatform-with-koin-1a1134530215
   - b) VM params: https://stackoverflow.com/questions/69456746/how-to-initialize-koin-viewmodel-with-parameters-inside-a-composable
-4.
+4. Ktor: 
+  - a) https://ktor.io/docs/client-engines.html#dependencies
+  - b) https://proandroiddev.com/compose-multiplatform-networking-with-ktor-koin-part-2-ea394158feb9

@@ -24,6 +24,7 @@ import com.test.kmp.todo.app.destinations.DirectDestinations
 import com.test.kmp.todo.app.destinations.HomeDestinations
 import com.test.kmp.todo.app.details.TaskDetailsScreenEntry
 import com.test.kmp.todo.app.edit.EditTaskScreenEntry
+import com.test.kmp.todo.app.emojis.emojisNavigation
 import com.test.kmp.todo.app.finished.finishedTasksNavigation
 import com.test.kmp.todo.app.home.taskNavigation
 import com.test.kmp.todo.app.ui.BottomNavBar
@@ -91,6 +92,7 @@ fun ContentContainer(
     ) {
         taskNavigation(navController)
         finishedTasksNavigation(navController)
+        emojisNavigation(navController)
         composable<DirectDestinations.AddTask> {
             AddTaskScreenEntry(
                 navController = navController

@@ -17,6 +17,10 @@ import com.test.kmp.todo.app.home.TasksListViewModel
 import com.test.kmp.todo.app.finished.FinishedTasksListViewModel
 import com.test.kmp.todo.app.data.TasksRepository
 import com.test.kmp.todo.app.data.TasksRepositoryImpl
+import com.test.kmp.todo.app.network.networkModule
+import com.test.kmp.todo.app.emojis.EmojisViewModel
+import com.test.kmp.todo.app.emojis.GetAllEmojisUseCase
+import com.test.kmp.todo.app.emojis.GetAllEmojisUseCaseImps
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -38,6 +42,7 @@ val vmModule = module {
     viewModelOf(::TaskDetailsViewModel)
     viewModelOf(::FinishedTasksListViewModel)
     viewModelOf(::EditTaskViewModel)
+    viewModelOf(::EmojisViewModel)
 }
 
 val useCasesModule = module {
@@ -45,11 +50,12 @@ val useCasesModule = module {
     singleOf(::UpdateTaskUseCaseImpl).bind(UpdateTaskUseCase::class)
     singleOf(::GetTasksFlowUseCaseImpl).bind(GetTasksFlowUseCase::class)
     singleOf(::GetTaskFlowUseCaseImpl).bind(GetTaskFlowUseCase::class)
+    singleOf(::GetAllEmojisUseCaseImps).bind(GetAllEmojisUseCase::class)
 }
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) {
     startKoin {
         appDeclaration()
-        modules(appModule, useCasesModule, vmModule, platformModule())
+        modules(appModule, useCasesModule, vmModule, networkModule, platformModule())
     }
 }

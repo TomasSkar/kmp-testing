@@ -1,14 +1,11 @@
 package com.test.kmp.todo.app.network
 
+import com.test.kmp.todo.app.network.services.GamesService
+import com.test.kmp.todo.app.network.services.GamesServiceImpl
 import com.test.kmp.todo.app.utils.JsonUtils
-import com.test.kmp.todo.app.network.services.EmojiService
-import com.test.kmp.todo.app.network.services.EmojiServiceImpl
 import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
-import io.ktor.client.engine.HttpClientEngine
-import io.ktor.client.engine.HttpClientEngineFactory
 import io.ktor.client.plugins.DefaultRequest
-import io.ktor.client.plugins.HttpResponseValidator
 import io.ktor.client.plugins.HttpTimeout
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest
@@ -16,12 +13,9 @@ import io.ktor.client.plugins.logging.LogLevel
 import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.header
-import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType.Application.Json
 import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpStatusCode
 import io.ktor.serialization.kotlinx.json.json
-import kotlinx.serialization.SerializationException
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
@@ -48,7 +42,7 @@ val networkModule = module {
             val jsonUtils: JsonUtils = get()
 
             defaultRequest {
-                url("https://emojihub.yurace.pro/api/")
+                url("https://www.cheapshark.com/api/1.0/")
             }
 
             install(ContentNegotiation) {
@@ -69,5 +63,5 @@ val networkModule = module {
             responseLogger(isDebugApp = true)
         }
     }
-    singleOf(::EmojiServiceImpl).bind(EmojiService::class)
+    singleOf(::GamesServiceImpl).bind(GamesService::class)
 }

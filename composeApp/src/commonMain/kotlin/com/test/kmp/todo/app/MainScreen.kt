@@ -21,11 +21,13 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.test.kmp.todo.app.add.AddTaskScreenEntry
 import com.test.kmp.todo.app.destinations.DirectDestinations
+import com.test.kmp.todo.app.destinations.GamesDestinations
 import com.test.kmp.todo.app.destinations.HomeDestinations
 import com.test.kmp.todo.app.details.TaskDetailsScreenEntry
 import com.test.kmp.todo.app.edit.EditTaskScreenEntry
-import com.test.kmp.todo.app.emojis.emojisNavigation
 import com.test.kmp.todo.app.finished.finishedTasksNavigation
+import com.test.kmp.todo.app.games.gamesNavigation
+import com.test.kmp.todo.app.games.lookup.GamesLookupScreenEntry
 import com.test.kmp.todo.app.home.taskNavigation
 import com.test.kmp.todo.app.ui.BottomNavBar
 import com.test.kmp.todo.app.ui.navigationButtonsList
@@ -92,7 +94,7 @@ fun ContentContainer(
     ) {
         taskNavigation(navController)
         finishedTasksNavigation(navController)
-        emojisNavigation(navController)
+        gamesNavigation(navController)
         composable<DirectDestinations.AddTask> {
             AddTaskScreenEntry(
                 navController = navController
@@ -108,6 +110,12 @@ fun ContentContainer(
             TaskDetailsScreenEntry(
                 backStackEntry = backStackEntry,
                 navController = navController
+            )
+        }
+        composable<GamesDestinations.GamesDealLookup> { backStackEntry ->
+            GamesLookupScreenEntry(
+                navController = navController,
+                backStackEntry = backStackEntry
             )
         }
     }

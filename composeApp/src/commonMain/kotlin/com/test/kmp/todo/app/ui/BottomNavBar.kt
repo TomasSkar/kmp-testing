@@ -6,6 +6,8 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Create
 import androidx.compose.material.icons.filled.Done
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -20,6 +22,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.test.kmp.todo.app.destinations.FinishedDestinations
+import com.test.kmp.todo.app.destinations.GamesDestinations
 import com.test.kmp.todo.app.destinations.HomeDestinations
 
 data class BottomBarRoute(
@@ -38,6 +41,11 @@ val navigationButtonsList = listOf(
         route = FinishedDestinations.FinishedTasksRoute,
         title = "Finished tasks",
         icon = Icons.Default.Done
+    ),
+    BottomBarRoute(
+        route = GamesDestinations.GamesRoute,
+        title = "Deals",
+        icon = Icons.Default.Search
     ),
 )
 

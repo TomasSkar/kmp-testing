@@ -17,6 +17,8 @@ import com.test.kmp.todo.app.home.TasksListViewModel
 import com.test.kmp.todo.app.finished.FinishedTasksListViewModel
 import com.test.kmp.todo.app.data.TasksRepository
 import com.test.kmp.todo.app.data.TasksRepositoryImpl
+import com.test.kmp.todo.app.network.networkModule
+import com.test.kmp.todo.app.games.di.gamesModule
 import org.koin.core.context.startKoin
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
@@ -50,6 +52,6 @@ val useCasesModule = module {
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) {
     startKoin {
         appDeclaration()
-        modules(appModule, useCasesModule, vmModule, platformModule())
+        modules(appModule, gamesModule, useCasesModule, vmModule, networkModule, platformModule())
     }
 }

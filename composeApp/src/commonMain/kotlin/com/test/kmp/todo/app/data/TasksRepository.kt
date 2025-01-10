@@ -11,7 +11,7 @@ interface TasksRepository {
 }
 
 class TasksRepositoryImpl(
-    private val localStore: TaskLocalStore
+    private val localStore: TaskLocalStore,
 ) : TasksRepository {
     override suspend fun getTasksFlow() = localStore.getTasksFlow()
 
@@ -26,4 +26,5 @@ class TasksRepositoryImpl(
     override suspend fun getTask(taskId: Long): Flow<Task?> {
         return localStore.getTask(taskId)
     }
+
 }

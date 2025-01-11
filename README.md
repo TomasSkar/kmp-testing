@@ -26,3 +26,7 @@ Projects and articles used as example:
 4. Ktor: 
   - a) https://ktor.io/docs/client-engines.html#dependencies
   - b) https://proandroiddev.com/compose-multiplatform-networking-with-ktor-koin-part-2-ea394158feb9
+5. Desktop support:
+  - `add("kspDesktop", libs.room.compiler)` from [Stackoverflow](https://stackoverflow.com/questions/78858784/roomdatabaseconstructor-on-kotlinmultiplatform-has-no-corresponding-expected-dec)
+  - Room setup from [Medium post](https://proandroiddev.com/storing-data-in-local-database-like-a-boss-introducing-room-in-compose-multiplatform-2e39781c7b6a)
+  - overall setup just copied from new [wizard project](https://kmp.jetbrains.com/)

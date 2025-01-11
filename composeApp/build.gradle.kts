@@ -16,6 +16,7 @@ kotlin {
     sourceSets.commonMain {
         kotlin.srcDir("build/generated/ksp/metadata")
     }
+
     androidTarget {
         @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
@@ -33,9 +34,14 @@ kotlin {
             isStatic = true
         }
     }
+
+    jvm("desktop")
     
     sourceSets {
-        
+        val desktopMain by getting {
+            kotlin.srcDirs("src/jvmMain/kotlin")
+        }
+
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -43,6 +49,14 @@ kotlin {
             implementation(libs.koin.androidx.compose)
             implementation(libs.room.runtime.android)
             implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
+            implementation(libs.ktor.client.cio)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -75,9 +89,7 @@ kotlin {
             implementation(libs.coil.compose)
             implementation(libs.coil.ktor)
         }
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
-        }
+
     }
 }
 
@@ -108,6 +120,18 @@ android {
     }
 }
 
+compose.desktop {
+    application {
+        mainClass = "com.test.kmp.todo.app.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "com.test.kmp.todo.app"
+            packageVersion = "1.0.0"
+        }
+    }
+}
+
 room {
     schemaDirectory("$projectDir/schemas")
 }
@@ -119,5 +143,7 @@ dependencies {
     add("kspIosSimulatorArm64", libs.room.compiler)
     add("kspIosX64", libs.room.compiler)
     add("kspIosArm64", libs.room.compiler)
+    // Desktop
+    add("kspDesktop", libs.room.compiler)
     debugImplementation(compose.uiTooling)
 }

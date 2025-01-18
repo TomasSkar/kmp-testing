@@ -5,12 +5,14 @@ import androidx.compose.ui.window.application
 import com.test.kmp.todo.app.di.initKoin
 import org.koin.core.context.GlobalContext.startKoin
 
-fun main() = application {
+fun main() {
     initKoin()
-    Window(
-        onCloseRequest = ::exitApplication,
-        title = "KotlinProject",
-    ) {
-        App()
+    application {
+        Window(
+            onCloseRequest = ::exitApplication,
+            title = "KotlinProject",
+        ) {
+            App()
+        }
     }
 }

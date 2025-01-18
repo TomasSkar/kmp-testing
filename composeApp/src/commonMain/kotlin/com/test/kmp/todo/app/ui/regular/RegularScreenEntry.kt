@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -83,7 +84,7 @@ fun RegularScreenEntry(
                             contentDescription = null
                         )
                     },
-                    label = { Text(navButton.title) },
+                    label = { Text(navButton.title, modifier = Modifier.padding(horizontal = 8.dp)) },
                     selected = currentDestination?.hierarchy?.any { it.hasRoute(navButton.route::class) } == true,
                     onClick = {
                         navController.navigate(navButton.route) {

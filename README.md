@@ -18,11 +18,13 @@ Projects and articles used as example:
   - a) https://developer.android.com/kotlin/multiplatform/room
   - b) https://github.com/BillyMRX1/The-Notes-KMP/blob/production/composeApp/src/commonMain/kotlin/ui/components/EmptyState.kt
   - c) https://medium.com/@brilianadeputra/how-to-use-koin-and-room-database-in-kotlin-multiplatform-ce73577e4cc9
+  - d) Room list save example at [4:33:13](https://www.youtube.com/watch?v=WT9-4DXUqsM)
 2. Kermit logging: 
   - a) https://kermit.touchlab.co/docs/
 3. ViewModel: 
   - a) https://proandroiddev.com/how-to-integrate-viewmodel-in-kotlin-multiplatform-with-koin-1a1134530215
   - b) VM params: https://stackoverflow.com/questions/69456746/how-to-initialize-koin-viewmodel-with-parameters-inside-a-composable
+  - c) Shared viewModel example at [3:16:57](https://www.youtube.com/watch?v=WT9-4DXUqsM)
 4. Ktor: 
   - a) https://ktor.io/docs/client-engines.html#dependencies
   - b) https://proandroiddev.com/compose-multiplatform-networking-with-ktor-koin-part-2-ea394158feb9
@@ -30,3 +32,5 @@ Projects and articles used as example:
   - `add("kspDesktop", libs.room.compiler)` from [Stackoverflow](https://stackoverflow.com/questions/78858784/roomdatabaseconstructor-on-kotlinmultiplatform-has-no-corresponding-expected-dec)
   - Room setup from [Medium post](https://proandroiddev.com/storing-data-in-local-database-like-a-boss-introducing-room-in-compose-multiplatform-2e39781c7b6a)
   - overall setup just copied from new [wizard project](https://kmp.jetbrains.com/)
+6. [Lazy staggered grid](https://developer.android.com/develop/ui/compose/lists#lazy-staggered-grid)
+7. Build adaptive navigation with [NavigationSuiteScaffold](https://developer.android.com/develop/ui/compose/layouts/adaptive/build-adaptive-navigation)

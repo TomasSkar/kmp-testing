@@ -1,6 +1,7 @@
 package com.test.kmp.todo.app.games
 
 import androidx.compose.animation.AnimatedContent
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,6 +13,9 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.staggeredgrid.LazyVerticalStaggeredGrid
+import androidx.compose.foundation.lazy.staggeredgrid.StaggeredGridCells
+import androidx.compose.foundation.lazy.staggeredgrid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
@@ -28,6 +32,8 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import com.test.kmp.todo.app.data.models.GameDeal
 import com.test.kmp.todo.app.ui.RowText
+import com.test.kmp.todo.app.ui.WindowType
+import com.test.kmp.todo.app.ui.rememberWindowSize
 import com.test.kmp.todo.app.utils.convertTimestampToHumanReadable
 
 sealed interface GameDealsUiState {
@@ -42,6 +48,8 @@ fun GameDealsScreen(
     modifier: Modifier = Modifier,
     onDealClick: (dealId: String) -> Unit
 ) {
+    val screenSize = rememberWindowSize()
+
     Surface(
         modifier = Modifier.fillMaxSize()
     ) {
@@ -67,15 +75,39 @@ fun GameDealsScreen(
                 }
 
                 is GameDealsUiState.Loaded -> {
-                    LazyColumn(
-                        contentPadding = PaddingValues(12.dp)
-                    ) {
-                        items(state.deals) { deal ->
-                            GameDealComponent(
-                                deal = deal,
-                                onDealClick = onDealClick
-                            )
-                            Spacer(Modifier.height(8.dp))
+                    AnimatedContent(
+                        targetState = screenSize.widthType
+                    ) { type ->
+                        when (type) {
+                            WindowType.Expanded -> {
+                                LazyVerticalStaggeredGrid(
+                                    contentPadding = PaddingValues(12.dp),
+                                    columns = StaggeredGridCells.Adaptive(200.dp),
+                                    verticalItemSpacing = 12.dp,
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                                ) {
+                                    items(state.deals) { deal ->
+                                        GameDealComponent(
+                                            deal = deal,
+                                            onDealClick = onDealClick
+                                        )
+                                    }
+                                }
+                            }
+
+                            else -> {
+                                LazyColumn(
+                                    contentPadding = PaddingValues(12.dp)
+                                ) {
+                                    items(state.deals) { deal ->
+                                        GameDealComponent(
+                                            deal = deal,
+                                            onDealClick = onDealClick
+                                        )
+                                        Spacer(Modifier.height(8.dp))
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -95,10 +127,12 @@ private fun GameDealComponent(
         onClick = { onDealClick(deal.dealID) }
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(
-                topStart = 8.dp,
-                topEnd = 8.dp
-            ))
+            modifier = Modifier.fillMaxWidth().clip(
+                RoundedCornerShape(
+                    topStart = 8.dp,
+                    topEnd = 8.dp
+                )
+            )
         ) {
             AsyncImage(
                 model = deal.thumb,
@@ -116,7 +150,7 @@ private fun GameDealComponent(
                 style = MaterialTheme.typography.titleMedium
             )
             Spacer(Modifier.height(8.dp))
-            if(deal.releaseDate > 0) {
+            if (deal.releaseDate > 0) {
                 Text(
                     text = convertTimestampToHumanReadable(deal.releaseDate),
                     modifier = Modifier.fillMaxSize(),

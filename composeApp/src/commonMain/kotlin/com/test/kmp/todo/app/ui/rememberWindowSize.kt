@@ -1,20 +1,19 @@
 package com.test.kmp.todo.app.ui
 
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.unit.Dp
 
-@OptIn(ExperimentalComposeUiApi::class)
+// Currently can't be in common because: https://youtrack.jetbrains.com/issue/CMP-3963
+@Composable
+expect fun getScreenWidth(): Dp
+
+@Composable
+expect fun getScreenHeight(): Dp
+
 @Composable
 fun rememberWindowSize(): WindowSizeInfo {
-    val localWindowInfo = LocalWindowInfo.current
-    val localDensity = LocalDensity.current
-    val configuration = localWindowInfo.containerSize
-
-    val widthSizeDp = with(localDensity) { configuration.width.toDp() }
-    val heightSizeDp = with(localDensity) { configuration.height.toDp() }
+    val widthSizeDp = getScreenWidth()
+    val heightSizeDp = getScreenHeight()
 
     return WindowSizeInfo(
         widthSize = widthSizeDp,

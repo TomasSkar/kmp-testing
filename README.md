@@ -34,3 +34,4 @@ Projects and articles used as example:
   - overall setup just copied from new [wizard project](https://kmp.jetbrains.com/)
 6. [Lazy staggered grid](https://developer.android.com/develop/ui/compose/lists#lazy-staggered-grid)
 7. Build adaptive navigation with [NavigationSuiteScaffold](https://developer.android.com/develop/ui/compose/layouts/adaptive/build-adaptive-navigation)
+  - Also issue with window size and how to fix it: https://youtrack.jetbrains.com/issue/CMP-3963
